@@ -1,8 +1,7 @@
 import pygame
 import time
 import random
-
-
+ 
 pygame.init()
  
 white = (255, 255, 255)
@@ -29,7 +28,7 @@ score_font = pygame.font.SysFont("comicsansms", 15)
  
  
 def Your_score(score):
-    value = score_font.render("Ваш счет: " + str(score), True, yellow)
+    value = score_font.render("Your Score: " + str(score), True, yellow)
     dis.blit(value, [0, 0])
  
  
@@ -42,12 +41,9 @@ def our_snake(snake_block, snake_list):
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [dis_width / 6, dis_height / 3])
-def message2(msg, color):
-    mesg = font_style.render(msg, True, color)
-    dis.blit(mesg, [dis_width / 9, dis_height / 6])
  
  
-def gameLoop():
+def gameLoop():          
     game_over = False
     game_close = False
  
@@ -67,19 +63,12 @@ def gameLoop():
 	
     foodx1 = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0
     foody1 = round(random.randrange(0, dis_height - snake_block) / 15.0) * 15.0
-    
-    prepyatstviex = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0
-    prepyatstviey = round(random.randrange(0, dis_height - snake_block) / 15.0) * 15.0
-    
-    prepyatstviex2 = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0
-    prepyatstviey2 = round(random.randrange(0, dis_height - snake_block) / 15.0) * 15.0
  
     while not game_over:
  
         while game_close == True:
             dis.fill(blue)
-            message("Игра закончилась. Ваш счет: " + str(Length_of_snake - 1) + "Ваш рекорд:", red)
-            message2("Начать снова - R. Выйти из игры - Q", red)
+            message("You Lost! Press R-Play Again or Q-Quit", red)
             Your_score(Length_of_snake - 1)
             pygame.display.update()
  
@@ -114,7 +103,6 @@ def gameLoop():
         y1 += y1_change
         dis.fill(blue)
         pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
-        pygame.draw.rect(dis, red, [prepyatstviex, prepyatstviey, snake_block, snake_block])
         if ecx > 10:
             pygame.draw.rect(dis, red, [foodx1, foody1, snake_block, snake_block])
         snake_Head = []
@@ -133,7 +121,8 @@ def gameLoop():
             
         if Length_of_snake < 1:
             game_close = True
-            
+        if Length_of_snake == 0 and ecx > 10:
+            game_close = True
         if x1 == foodx and y1 == foody:
             foodx = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0
             foody = round(random.randrange(0, dis_height - snake_block) / 15.0) * 15.0
@@ -148,14 +137,20 @@ def gameLoop():
             if snake_speed > 12:
                 snake_speed += 0.05
         if x1 == foodx1 and y1 == foody1:
-            foodx1 = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0  # Создаем по новой яблоки
+            foodx1 = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0
             foody1 = round(random.randrange(0, dis_height - snake_block) / 15.0) * 15.0
             foodx = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0
             foody = round(random.randrange(0, dis_height - snake_block) / 15.0) * 15.0
-            Length_of_snake -= 3 #При съедание просроченного яблока убираем с счета 3 единицы. Чтоб игрок не выйграл
-            del snake_List[1:4]  #Уменьшаем нашу змейку, путем удаления из списка элеметов
-        if Length_of_snake < 1:
-            game_close = True		
+            Length_of_snake -= 3
+            snake_Head.append(-x1)
+            snake_Head.append(-y1)
+            snake_List.append(snake_Head)
+            if len(snake_List) > Length_of_snake:
+                del snake_List[1:4]
+            if Length_of_snake < 1:
+                game_close = True		
+			
+        clock.tick(snake_speed)
  
     pygame.quit()
     quit()
