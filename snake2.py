@@ -1,3 +1,4 @@
+# imp
 import pygame
 import time
 import random
@@ -24,8 +25,7 @@ snake_block = 15
 snake_speed = 5
 
 font_style = pygame.font.SysFont("bahnschrift", 22)
-score_font = pygame.font.SysFont("comicsansms", 20)
-
+score_font = pygame.font.SysFont("comicsansms", 28)
 
 def Your_score(score):
     dis.blit(score_font.render("Ваш счет: " + str(score), True, yellow), [0, 0])
@@ -35,33 +35,24 @@ def our_snake(snake_block, snake_list):
         pygame.draw.rect(dis, green, [x, y, snake_block - 0.1, snake_block - 0.1])
 
 def message(msg, color):
-    dis.blit(font_style.render(msg, True, color), [dis_width / 6, dis_height / 3])
-
+    dis.blit(font_style.render(msg, True, color), [dis_width // 6, dis_height // 3])
 
 def gameLoop():
     game_over = False
     game_close = False
 
-    x1 = dis_width / 2
-    y1 = dis_height / 2
-
-    x1_change = 0
-    y1_change = 0
-
+    x1, y1 = dis_width // 2, dis_height // 2
+    x1_change, y1_change = 0, 0
     snake_List = []
     Length_of_snake = 1
     snake_speed = 5
     ecx = 1
 
-    foodx = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0
-    foody = round(random.randrange(0, dis_height - snake_block) / 15.0) * 15.0
-
-    foodx1 = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0
-    foody1 = round(random.randrange(0, dis_height - snake_block) / 15.0) * 15.0
+    foodx, foody = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0, round(random.randrange(0, dis_height - snake_block) / 15.0) * 15.0
+    foodx1, foody1 = round(random.randrange(0, dis_width - snake_block) / 15.0) * 15.0, round(random.randrange(0, dis_height - snake_block) / 15.0) * 15.0
 
     while not game_over:
-
-        while game_close == True:
+        while game_close:
             dis.fill(blue)
             message('Нажмите R - Играть снова или Q - Выход', red)
             Your_score(Length_of_snake - 1)
@@ -78,17 +69,17 @@ def gameLoop():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+            elif event.type == pygame.KEYDOWN:
+                if event.key in (pygame.K_LEFT, pygame.K_a):
                     x1_change = -snake_block
                     y1_change = 0
-                elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                elif event.key in (pygame.K_RIGHT, pygame.K_d):
                     x1_change = snake_block
                     y1_change = 0
-                elif event.key == pygame.K_UP or event.key == pygame.K_w:
+                elif event.key in (pygame.K_UP, pygame.K_w):
                     y1_change = -snake_block
                     x1_change = 0
-                elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                elif event.key in (pygame.K_DOWN, pygame.K_s):
                     y1_change = snake_block
                     x1_change = 0
 
