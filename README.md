@@ -41,4 +41,3 @@ pip install pygame
 3. Запустите игру
 
 Шаблон макета змейки доступен на [Figma](https://www.figma.com/team_invite/redeem/EinHEGIZ6KB6R5xTxYU0wq)
-[Figma](https://www.figma.com/team_invite/redeem/EinHEGIZ6KB6R5xTxYU0wq)
