@@ -1,8 +1,41 @@
-# PR08
-To start the program, open _main.py
+# PR08-Simple-Snake
 
-P.S
+<br/>
+<p align="center">
+  <a href="https://github.com/happycozero - PR08-Simple-Snake">
+  </a>
 
-To move to the next mini-project, close the current one
+  <h3 align="center">PR08-Simple-Snake</h3>
 
-URL on figma: https://www.figma.com/team_invite/redeem/EinHEGIZ6KB6R5xTxYU0wq
+  <p align="center">
+    Легкая змейка на Python с помощью библиотеки Pygame
+    <br/>
+    <br/>
+  </p>
+</p>
+
+## О проекте
+
+Змейка на языке программирования Python.
+Простая и минималистичная.
+
+## Системные требования
+
+* Python 3
+* Среда разработки (IDE) или компилятор кода Python
+
+### Установка
+
+1. Клонируйте или скачайте репозиторий
+
+```sh
+git clone https://github.com/happycozero/PR08-Simple-Snake.git
+```
+
+2. Установите Pygame для запуска:
+
+```sh
+pip install pygame
+```
+
+3. Запустите игру
