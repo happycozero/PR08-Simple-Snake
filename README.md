@@ -32,11 +32,13 @@
 git clone https://github.com/happycozero/PR08-Simple-Snake.git
 ```
 
-2. Установите Pygame для запуска:
+2. Установите Pygame для запуска вручную:
 
 ```sh
 pip install pygame
 ```
+
+или с помощью автоматической установки IDE
 
 3. Запустите игру
 
